@@ -1,26 +1,35 @@
 # amalgam
-Tool to build macOS universal binaries and upload to a Github Release
 
-## TODO
+* CLI Tool to build macOS universal binaries and upload to a Github Release
+* You can download release binaries for linux/macOS/windows [here](https://github.com/manojkarthick/amalgam/releases).
 
-[ ] Integrate makefat library
-[ ] Authenticate to Github
-[ ] Support specifying file regexes for finding amd64 and arm64 binaries
-[ ] Support specifying specific release tag
-[ ] Fallback to latest github release tag
-[ ] Support providing a name for the universal binary (or use name from amd64-regex)
-[ ] Specify whether the binary is using a compressed archive
-[ ] Specify path to the binary with the extracted archive
-[ ] Make it available as a Github Actions Workflow
+```shell
+❯ amalgam --help
+NAME:
+   amalgam - Create macOS Universal binaries from Github releases
 
-Flags:
-* --owner
-* --repo
-* --tag
-* --amd64-regex
-* --arm64-regex
-* --uses-archive
-* --binary-path
+USAGE:
+   amalgam [global options] command [command options] [arguments...]
 
-Environment variables
-* GITHUB_TOKEN
+COMMANDS:
+   help, h  Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --owner value        Github repo owner username
+   --repo value         Github repository name
+   --tag value          Github repository name (default: "latest")
+   --amd64 value        Substring for the amd64 binary
+   --arm64 value        Substring for the arm64 binary
+   --compressed         Do the releases use compressed archives (default: false)
+   --binary-path value  Path to the binary inside the archive
+   --overwrite          Delete pre-existing universal asset? (default: false)
+   --help, -h           show help (default: false)
+```
+
+## Troubleshooting
+
+On macOS, if you encounter the error `“amalgam” cannot be opened because the developer cannot be verified`, run the following:
+
+```shell
+xattr -d com.apple.quarantine ./amalgam
+```
