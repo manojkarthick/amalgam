@@ -16,3 +16,6 @@
 
 # Binary name
 amalgam
+
+# Goreleaser builds
+dist/
