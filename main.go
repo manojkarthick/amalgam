@@ -66,6 +66,13 @@ func main() {
 				Usage:       "Delete pre-existing universal asset?",
 				Destination: &cfg.Overwrite,
 			},
+			&cli.StringFlag{
+				Name:        "identifier",
+				Required:    false,
+				Usage:       "Identifier for universal binary",
+				Value:       "all",
+				Destination: &cfg.UniversalIdentifer,
+			},
 		},
 		Action: func(context *cli.Context) error {
 			log.Debug("Num flags: ", context.NumFlags())
