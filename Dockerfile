@@ -6,6 +6,7 @@ WORKDIR /build
 RUN CGO_ENABLED=0 GOOS=linux go build -a -o amalgam
 
 FROM alpine:3.15
+RUN apk add --no-cache bash
 COPY --from=builder /build/amalgam .
 
 ENTRYPOINT [ "./amalgam" ]
