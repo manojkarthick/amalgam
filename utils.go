@@ -10,10 +10,9 @@ import (
 )
 
 const (
-	UNIVERSAL_IDENITIFER = "universal_test"
-	AMD64_IDENTIFIER     = "amd64"
-	X64_IDENTIFER        = "x64"
-	X86_64_IDENTIFER     = "x86_64"
+	AMD64_IDENTIFIER = "amd64"
+	X64_IDENTIFER    = "x64"
+	X86_64_IDENTIFER = "x86_64"
 )
 
 // setup global logging configuration and make logging level
@@ -56,7 +55,7 @@ func downloadFile(filepath string, url string) error {
 }
 
 // generate universal binary asset name for github based on arch
-func generateUniversalAssetName(amd64AssetName string) string {
+func generateUniversalAssetName(amd64AssetName string, identifier string) string {
 	var architecture string
 
 	// if the asset name contains amd64, x64 or x86_64, convert
@@ -70,5 +69,5 @@ func generateUniversalAssetName(amd64AssetName string) string {
 		architecture = X86_64_IDENTIFER
 	}
 
-	return strings.ReplaceAll(amd64AssetName, architecture, UNIVERSAL_IDENITIFER)
+	return strings.ReplaceAll(amd64AssetName, architecture, identifier)
 }

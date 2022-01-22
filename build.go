@@ -17,15 +17,16 @@ import (
 
 // application's configuration
 type Configuration struct {
-	Owner          string
-	Repository     string
-	Tag            string
-	Amd64Substring string
-	Arm64Substring string
-	Compressed     bool
-	BinaryPath     string
-	GithubToken    string
-	Overwrite      bool
+	Owner              string
+	Repository         string
+	Tag                string
+	Amd64Substring     string
+	Arm64Substring     string
+	Compressed         bool
+	BinaryPath         string
+	GithubToken        string
+	Overwrite          bool
+	UniversalIdentifer string
 }
 
 const (
@@ -194,7 +195,7 @@ func (cfg *Configuration) Combine(amd64Path string, arm64Path string, amd64Asset
 
 	fileName := filepath.Base(amd64Path)
 	target := filepath.Join(dir, fileName)
-	universalAssetName := generateUniversalAssetName(amd64AssetName)
+	universalAssetName := generateUniversalAssetName(amd64AssetName, cfg.UniversalIdentifer)
 
 	err = MakeFatBinary(amd64Path, arm64Path, target)
 	if err != nil {
