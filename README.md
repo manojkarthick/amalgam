@@ -33,3 +33,7 @@ On macOS, if you encounter the error `“amalgam” cannot be opened because the
 ```shell
 xattr -d com.apple.quarantine ./amalgam
 ```
+
+## Credits
+
+Thanks to Keith Randall for the [makefat](https://github.com/randall77/makefat) library this is based on.
