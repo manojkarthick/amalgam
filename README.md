@@ -2,6 +2,7 @@
 
 * CLI Tool to build macOS universal binaries and upload to a Github Release
 * You can download release binaries for linux/macOS/windows [here](https://github.com/manojkarthick/amalgam/releases).
+* Pre-built docker images are built and stored in the Github container registry. They can be found [here](https://github.com/manojkarthick/amalgam/pkgs/container/amalgam).
 
 ```shell
 ❯ amalgam --help
