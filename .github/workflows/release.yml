@@ -40,7 +40,7 @@ jobs:
       - 
         name: Build and push universal binary
         if: startsWith(github.ref, 'refs/tags/v')
-        uses: manojkarthick/macos-universal-binary-action@alpha
+        uses: manojkarthick/macos-universal-binary-action@beta
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -51,5 +51,5 @@ jobs:
           arm64: "darwin-arm64"
           compressed: "true"
           overwrite: "true"
-          universal: "all"
+          universal-identifier: "all"
           binary-path: "amalgam"
