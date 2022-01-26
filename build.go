@@ -23,6 +23,7 @@ type Configuration struct {
 	Amd64Substring     string
 	Arm64Substring     string
 	Compressed         bool
+	FolderWrapped      bool
 	BinaryPath         string
 	GithubToken        string
 	Overwrite          bool
@@ -173,7 +174,14 @@ func (cfg *Configuration) DownloadAndGetPath(asset *github.ReleaseAsset) (string
 		if err != nil {
 			return "", err
 		}
-		binary = filepath.Join(extractDir, cfg.BinaryPath)
+
+		if cfg.FolderWrapped {
+			folderName := strings.ReplaceAll(name, ".tar.gz", "")
+			binary = filepath.Join(extractDir, folderName, cfg.BinaryPath)
+		} else {
+			binary = filepath.Join(extractDir, cfg.BinaryPath)
+		}
+
 	} else {
 		binary = downloadLocation
 	}

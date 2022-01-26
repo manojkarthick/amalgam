@@ -54,6 +54,12 @@ func main() {
 				Usage:       "Do the releases use compressed archives",
 				Destination: &cfg.Compressed,
 			},
+			&cli.BoolFlag{
+				Name:        "folder-wrapped",
+				Required:    false,
+				Usage:       "Are the files wrapped inside a folder with name of the archive",
+				Destination: &cfg.FolderWrapped,
+			},
 			&cli.StringFlag{
 				Name:        "binary-path",
 				Required:    false,
