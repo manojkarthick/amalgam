@@ -4,6 +4,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strings"
 
 	log "github.com/sirupsen/logrus"
@@ -70,4 +71,23 @@ func generateUniversalAssetName(amd64AssetName string, identifier string) string
 	}
 
 	return strings.ReplaceAll(amd64AssetName, architecture, identifier)
+}
+
+func findBinaryPath(directory string, name string) (string, error) {
+	var binaryPath string
+	err := filepath.Walk(directory, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+		if filepath.Base(path) == name {
+			binaryPath = path
+		}
+		return nil
+	})
+
+	if err != nil {
+		return "", err
+	}
+
+	return binaryPath, nil
 }

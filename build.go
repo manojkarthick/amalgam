@@ -23,8 +23,6 @@ type Configuration struct {
 	Amd64Substring     string
 	Arm64Substring     string
 	Compressed         bool
-	FolderWrapped      bool
-	BinaryPath         string
 	GithubToken        string
 	Overwrite          bool
 	UniversalIdentifer string
@@ -45,7 +43,6 @@ func CreateUniveralBinary(cfg *Configuration) error {
 	log.Debugf("Amd64 Regex: %s", cfg.Amd64Substring)
 	log.Debugf("Arm64 Regex: %s", cfg.Arm64Substring)
 	log.Debugf("Compressed?: %t", cfg.Compressed)
-	log.Debugf("Binary path: %s", cfg.BinaryPath)
 
 	release, err := cfg.GetRelease()
 	if err != nil {
@@ -175,12 +172,13 @@ func (cfg *Configuration) DownloadAndGetPath(asset *github.ReleaseAsset) (string
 			return "", err
 		}
 
-		if cfg.FolderWrapped {
-			folderName := strings.ReplaceAll(name, ".tar.gz", "")
-			binary = filepath.Join(extractDir, folderName, cfg.BinaryPath)
-		} else {
-			binary = filepath.Join(extractDir, cfg.BinaryPath)
+		binaryPath, err := findBinaryPath(extractDir, cfg.Repository)
+		if err != nil {
+			return "", err
 		}
+
+		log.Debugf("Found binary path: %s", binaryPath)
+		return binaryPath, nil
 
 	} else {
 		binary = downloadLocation

@@ -55,18 +55,6 @@ func main() {
 				Destination: &cfg.Compressed,
 			},
 			&cli.BoolFlag{
-				Name:        "folder-wrapped",
-				Required:    false,
-				Usage:       "Are the files wrapped inside a folder with name of the archive",
-				Destination: &cfg.FolderWrapped,
-			},
-			&cli.StringFlag{
-				Name:        "binary-path",
-				Required:    false,
-				Usage:       "Path to the binary inside the archive",
-				Destination: &cfg.BinaryPath,
-			},
-			&cli.BoolFlag{
 				Name:        "overwrite",
 				Required:    false,
 				Usage:       "Delete pre-existing universal asset?",
