@@ -21,6 +21,8 @@ archives:
     format_overrides:
       - goos: windows
         format: zip
+universal_binaries:
+  - replace: false
 checksum:
   name_template: 'checksums.txt'
 snapshot:
@@ -31,3 +33,17 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+brews:
+  - 
+    tap:
+      owner: manojkarthick
+      name: homebrew-tap
+      branch: master
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    commit_author:
+      name: goreleaserbot
+      email: goreleaser@carlosbecker.com
+    folder: Formula
+    homepage: "https://github.com/manojkarthick/amalgam"
+    description: "Build and upload macOS universal binaries from Github Releases"
+    license: "MIT"
