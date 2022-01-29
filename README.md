@@ -1,8 +1,25 @@
 # amalgam
 
 * CLI Tool to build macOS universal binaries and upload to a Github Release
-* You can download release binaries for linux/macOS/windows [here](https://github.com/manojkarthick/amalgam/releases).
-* Pre-built docker images are built and stored in the Github container registry. They can be found [here](https://github.com/manojkarthick/amalgam/pkgs/container/amalgam).
+
+## Installation
+
+### Release binaries
+
+You can download release binaries for linux/macOS/windows [here](https://github.com/manojkarthick/amalgam/releases).
+
+### Docker
+
+Pre-built docker images are built and stored in [Docker Hub](https://hub.docker.com/r/manojkarthick/amalgam) and the [Github container registry](https://github.com/manojkarthick/amalgam/pkgs/container/amalgam).
+
+### Homebrew
+
+```shell
+brew tap manojkarthick/tap
+brew install amalgam
+```
+
+## Usage
 
 ```shell
 ❯ amalgam --help
