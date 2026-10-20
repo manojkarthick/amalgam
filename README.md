@@ -1,5 +1,25 @@
 # amalgam
 
+> [!WARNING]
+> **amalgam is deprecated and the repository is archived.** It is no longer maintained.
+> Existing release binaries, Docker images, and the Homebrew formula remain available.
+>
+> Create universal binaries as part of your build instead:
+>
+> * **Go:** use GoReleaser's built-in [`universal_binaries`](https://goreleaser.com/customization/builds/universalbinaries/). It runs on Linux runners.
+>   ```yaml
+>   # .goreleaser.yaml
+>   universal_binaries:
+>     - replace: true
+>   ```
+> * **On macOS (any language):** `lipo` ships with Xcode.
+>   ```sh
+>   lipo -create -output myapp myapp-arm64 myapp-amd64
+>   ```
+> * **On Linux (any language):** use [konoui/lipo](https://github.com/konoui/lipo), a `lipo`-compatible tool written in Go, or `llvm-lipo`.
+>
+> Sign and notarize the merged binary after you create it.
+
 * CLI Tool to build macOS universal binaries and upload to a Github Release
 
 ## Installation
